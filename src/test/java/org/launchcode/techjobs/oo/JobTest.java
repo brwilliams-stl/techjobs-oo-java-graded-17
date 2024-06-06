@@ -59,8 +59,8 @@ public class JobTest {
                 new PositionType("Quality Control"),
                 new CoreCompetency("Persistence"));
         String testJobString = testJob.toString();
-        assertEquals(System.lineSeparator(), testJobString.charAt(0));
-        assertEquals(System.lineSeparator(), testJobString.charAt(testJobString.length() - 1));
+        assertEquals("\n", Character.toString(testJobString.charAt(0)));
+        assertEquals("\n", Character.toString(testJobString.charAt(testJobString.length() - 1)));
     }
 
     @Test
