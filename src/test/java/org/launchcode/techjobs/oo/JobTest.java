@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class JobTest {
     //TODO: Create your unit tests here
     @Test
-    public void testSettingJobID() {
+    public void testSettingJobId() {
         Job job1 = new Job();
         Job job2 = new Job();
         assertNotEquals(job1.getId(), job2.getId());
@@ -49,5 +49,51 @@ public class JobTest {
                 new CoreCompetency("Persistence"));
 
         assertFalse(job1.equals(job2));
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job testJob = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality Control"),
+                new CoreCompetency("Persistence"));
+        String testJobString = testJob.toString();
+        assertEquals(System.lineSeparator(), testJobString.charAt(0));
+        assertEquals(System.lineSeparator(), testJobString.charAt(testJobString.length() - 1));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job testJob = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality Control"),
+                new CoreCompetency("Persistence"));
+        String testJobString = testJob.toString();
+
+        assertTrue(testJobString.contains("\nID: "));
+        assertTrue(testJobString.contains("\nName: Product tester"));
+        assertTrue(testJobString.contains("\nEmployer: ACME"));
+        assertTrue(testJobString.contains("\nLocation: Desert"));
+        assertTrue(testJobString.contains("\nPosition Type: Quality Control"));
+        assertTrue(testJobString.contains("\nCore Competency: Persistence"));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job testJob = new Job("Product tester",
+                new Employer("ACME"),
+                new Location(""),
+                new PositionType("Quality Control"),
+                new CoreCompetency("Persistence"));
+
+        assertTrue(testJob.toString().contains("Location: Data not available"));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyJob() {
+        Job testJob = new Job();
+        assertEquals("OOPS! This job does not seem to exist.", testJob.toString());
     }
 }

@@ -31,6 +31,53 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    @Override
+    public String toString() {
+        String jobString = "";
+
+        if (name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
+            jobString = "OOPS! This job does not seem to exist.";
+        } else {
+            jobString += "\n";
+
+            jobString += "ID: ";
+            jobString += id;
+            jobString += "\n";
+
+            jobString += "Name: ";
+            if (name.isEmpty()) {
+                jobString += "Data not available";
+            } else jobString += name;
+            jobString += "\n";
+
+            jobString += "Employer: ";
+            if (employer.toString().isEmpty()) {
+                jobString += "Data not available";
+            } else jobString += employer.toString();
+            jobString += "\n";
+
+            jobString += "Location: ";
+            if (location.toString().isEmpty()) {
+                jobString += "Data not available";
+            } else jobString += location.toString();
+            jobString += "\n";
+
+            jobString += "Position Type: ";
+            if (positionType.toString().isEmpty()) {
+                jobString += "Data not available";
+            } else jobString += positionType.toString();
+            jobString += "\n";
+
+            jobString += "Core Competency: ";
+            if (coreCompetency.toString().isEmpty()) {
+                jobString += "Data not available";
+            } else jobString += coreCompetency.toString();
+            jobString += "\n";
+        }
+
+        return jobString;
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
